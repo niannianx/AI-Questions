@@ -1,0 +1,43 @@
+/* @font-face {
+  font-family: 'FangZhengKaiTiJianTi';
+  src: url('@/assets/fonts/FangZhengKaiTiJianTi.ttf') format('ttf');
+} */
+@font-face {
+  font-family: 'HongLeiXingShuJianTi-2';
+  src: url('@/assets/fonts/HongLeiXingShuJianTi-2.otf') format('truetype');
+}
+.logo {
+  background-image: url(@/assets/images/logo1.png);
+  /* background-image:url(@/assets/images/logo2.png); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 16px auto;
+}
+.smallLogo {
+  width: 100%;
+  height: 40px;
+  background-image: url('@/assets/images/logo2.png'); /* 替换为你的小logo路径 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 16px auto;
+}
+
+.largeLogo {
+  width: 100%;
+  height: 40px;
+  background-image: url('@/assets/images/logo1.png'); /* 替换为你的大logo路径 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 16px auto;
+}
+.header {
+  /* font-family: 'FangZhengKaiTiJianTi', sans-serif;   */
+  font-family: 'HongLeiXingShuJianTi-2', sans-serif;
+  font-size: 24px;
+}
