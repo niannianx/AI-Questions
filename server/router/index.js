@@ -9,9 +9,9 @@ import {
   updateQuestion, 
   deleteQuestions,
   generateQuestions,
-  generateExam,
-  getRecommendedQuestions
+ 
 } from "../controller/question.js";
+import { generateExam, getRecommendedQuestions } from "../controller/exam.js";
 
 const router = new Router({
   prefix: "/api",
