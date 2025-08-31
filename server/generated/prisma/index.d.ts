@@ -2026,6 +2026,7 @@ export namespace Prisma {
     content: string | null
     options: string | null
     answer: string | null
+    codeAnswer: string | null
     difficulty: string | null
     language: string | null
     createdAt: Date | null
@@ -2038,6 +2039,7 @@ export namespace Prisma {
     content: string | null
     options: string | null
     answer: string | null
+    codeAnswer: string | null
     difficulty: string | null
     language: string | null
     createdAt: Date | null
@@ -2050,6 +2052,7 @@ export namespace Prisma {
     content: number
     options: number
     answer: number
+    codeAnswer: number
     difficulty: number
     language: number
     createdAt: number
@@ -2072,6 +2075,7 @@ export namespace Prisma {
     content?: true
     options?: true
     answer?: true
+    codeAnswer?: true
     difficulty?: true
     language?: true
     createdAt?: true
@@ -2084,6 +2088,7 @@ export namespace Prisma {
     content?: true
     options?: true
     answer?: true
+    codeAnswer?: true
     difficulty?: true
     language?: true
     createdAt?: true
@@ -2096,6 +2101,7 @@ export namespace Prisma {
     content?: true
     options?: true
     answer?: true
+    codeAnswer?: true
     difficulty?: true
     language?: true
     createdAt?: true
@@ -2195,6 +2201,7 @@ export namespace Prisma {
     content: string
     options: string | null
     answer: string | null
+    codeAnswer: string | null
     difficulty: string
     language: string | null
     createdAt: Date
@@ -2226,6 +2233,7 @@ export namespace Prisma {
     content?: boolean
     options?: boolean
     answer?: boolean
+    codeAnswer?: boolean
     difficulty?: boolean
     language?: boolean
     createdAt?: boolean
@@ -2238,6 +2246,7 @@ export namespace Prisma {
     content?: boolean
     options?: boolean
     answer?: boolean
+    codeAnswer?: boolean
     difficulty?: boolean
     language?: boolean
     createdAt?: boolean
@@ -2250,6 +2259,7 @@ export namespace Prisma {
     content?: boolean
     options?: boolean
     answer?: boolean
+    codeAnswer?: boolean
     difficulty?: boolean
     language?: boolean
     createdAt?: boolean
@@ -2262,13 +2272,14 @@ export namespace Prisma {
     content?: boolean
     options?: boolean
     answer?: boolean
+    codeAnswer?: boolean
     difficulty?: boolean
     language?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type QuestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "content" | "options" | "answer" | "difficulty" | "language" | "createdAt" | "updatedAt", ExtArgs["result"]["question"]>
+  export type QuestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "content" | "options" | "answer" | "codeAnswer" | "difficulty" | "language" | "createdAt" | "updatedAt", ExtArgs["result"]["question"]>
 
   export type $QuestionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Question"
@@ -2279,6 +2290,7 @@ export namespace Prisma {
       content: string
       options: string | null
       answer: string | null
+      codeAnswer: string | null
       difficulty: string
       language: string | null
       createdAt: Date
@@ -2711,6 +2723,7 @@ export namespace Prisma {
     readonly content: FieldRef<"Question", 'String'>
     readonly options: FieldRef<"Question", 'String'>
     readonly answer: FieldRef<"Question", 'String'>
+    readonly codeAnswer: FieldRef<"Question", 'String'>
     readonly difficulty: FieldRef<"Question", 'String'>
     readonly language: FieldRef<"Question", 'String'>
     readonly createdAt: FieldRef<"Question", 'DateTime'>
@@ -3108,6 +3121,7 @@ export namespace Prisma {
     content: 'content',
     options: 'options',
     answer: 'answer',
+    codeAnswer: 'codeAnswer',
     difficulty: 'difficulty',
     language: 'language',
     createdAt: 'createdAt',
@@ -3237,6 +3251,7 @@ export namespace Prisma {
     content?: StringFilter<"Question"> | string
     options?: StringNullableFilter<"Question"> | string | null
     answer?: StringNullableFilter<"Question"> | string | null
+    codeAnswer?: StringNullableFilter<"Question"> | string | null
     difficulty?: StringFilter<"Question"> | string
     language?: StringNullableFilter<"Question"> | string | null
     createdAt?: DateTimeFilter<"Question"> | Date | string
@@ -3249,6 +3264,7 @@ export namespace Prisma {
     content?: SortOrder
     options?: SortOrderInput | SortOrder
     answer?: SortOrderInput | SortOrder
+    codeAnswer?: SortOrderInput | SortOrder
     difficulty?: SortOrder
     language?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -3264,6 +3280,7 @@ export namespace Prisma {
     content?: StringFilter<"Question"> | string
     options?: StringNullableFilter<"Question"> | string | null
     answer?: StringNullableFilter<"Question"> | string | null
+    codeAnswer?: StringNullableFilter<"Question"> | string | null
     difficulty?: StringFilter<"Question"> | string
     language?: StringNullableFilter<"Question"> | string | null
     createdAt?: DateTimeFilter<"Question"> | Date | string
@@ -3276,6 +3293,7 @@ export namespace Prisma {
     content?: SortOrder
     options?: SortOrderInput | SortOrder
     answer?: SortOrderInput | SortOrder
+    codeAnswer?: SortOrderInput | SortOrder
     difficulty?: SortOrder
     language?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -3296,6 +3314,7 @@ export namespace Prisma {
     content?: StringWithAggregatesFilter<"Question"> | string
     options?: StringNullableWithAggregatesFilter<"Question"> | string | null
     answer?: StringNullableWithAggregatesFilter<"Question"> | string | null
+    codeAnswer?: StringNullableWithAggregatesFilter<"Question"> | string | null
     difficulty?: StringWithAggregatesFilter<"Question"> | string
     language?: StringNullableWithAggregatesFilter<"Question"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Question"> | Date | string
@@ -3367,6 +3386,7 @@ export namespace Prisma {
     content: string
     options?: string | null
     answer?: string | null
+    codeAnswer?: string | null
     difficulty: string
     language?: string | null
     createdAt?: Date | string
@@ -3379,6 +3399,7 @@ export namespace Prisma {
     content: string
     options?: string | null
     answer?: string | null
+    codeAnswer?: string | null
     difficulty: string
     language?: string | null
     createdAt?: Date | string
@@ -3390,6 +3411,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     options?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: NullableStringFieldUpdateOperationsInput | string | null
+    codeAnswer?: NullableStringFieldUpdateOperationsInput | string | null
     difficulty?: StringFieldUpdateOperationsInput | string
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3402,6 +3424,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     options?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: NullableStringFieldUpdateOperationsInput | string | null
+    codeAnswer?: NullableStringFieldUpdateOperationsInput | string | null
     difficulty?: StringFieldUpdateOperationsInput | string
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3414,6 +3437,7 @@ export namespace Prisma {
     content: string
     options?: string | null
     answer?: string | null
+    codeAnswer?: string | null
     difficulty: string
     language?: string | null
     createdAt?: Date | string
@@ -3425,6 +3449,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     options?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: NullableStringFieldUpdateOperationsInput | string | null
+    codeAnswer?: NullableStringFieldUpdateOperationsInput | string | null
     difficulty?: StringFieldUpdateOperationsInput | string
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3437,6 +3462,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     options?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: NullableStringFieldUpdateOperationsInput | string | null
+    codeAnswer?: NullableStringFieldUpdateOperationsInput | string | null
     difficulty?: StringFieldUpdateOperationsInput | string
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3586,6 +3612,7 @@ export namespace Prisma {
     content?: SortOrder
     options?: SortOrder
     answer?: SortOrder
+    codeAnswer?: SortOrder
     difficulty?: SortOrder
     language?: SortOrder
     createdAt?: SortOrder
@@ -3602,6 +3629,7 @@ export namespace Prisma {
     content?: SortOrder
     options?: SortOrder
     answer?: SortOrder
+    codeAnswer?: SortOrder
     difficulty?: SortOrder
     language?: SortOrder
     createdAt?: SortOrder
@@ -3614,6 +3642,7 @@ export namespace Prisma {
     content?: SortOrder
     options?: SortOrder
     answer?: SortOrder
+    codeAnswer?: SortOrder
     difficulty?: SortOrder
     language?: SortOrder
     createdAt?: SortOrder

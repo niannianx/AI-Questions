@@ -6,6 +6,7 @@ export interface Question {
   content: string;
   options?: string | string[]; // 可以是 JSON 字符串或字符串数组
   answer?: string;
+  codeAnswer?: string;
   difficulty: 'easy' | 'medium' | 'hard';
   language?: string;
   createdAt?: Date;
