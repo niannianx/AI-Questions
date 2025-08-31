@@ -53,6 +53,11 @@ const questionService = {
     const response = await axios.post('/api/questions/generate', params);
     return response.data;
   },
+
+  generateExam:async (params: any) => {
+    const response = await axios.post('/api/exam/generate', params);
+    return response.data;
+  },
 };
 
 export default questionService;

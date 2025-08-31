@@ -8,7 +8,9 @@ import {
   createQuestion, 
   updateQuestion, 
   deleteQuestions,
-  generateQuestions 
+  generateQuestions,
+  generateExam,
+  getRecommendedQuestions
 } from "../controller/question.js";
 
 const router = new Router({
@@ -29,5 +31,7 @@ router.post("/questions", createQuestion);
 router.put("/questions/:id", updateQuestion);
 router.post("/questions/delete", deleteQuestions);
 router.post("/questions/generate", generateQuestions);
+router.post('/exam/generate', generateExam);
+router.get('/exam/recommend', getRecommendedQuestions);
 
 export default router;
