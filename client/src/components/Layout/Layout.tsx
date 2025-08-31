@@ -1,6 +1,6 @@
 // src/components/Layout.tsx
 import React, { useState } from 'react';
-import { EditOutlined, FileTextOutlined, FormOutlined } from '@ant-design/icons';
+import { BookOutlined, EditOutlined, FileTextOutlined, FormOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import styles from './Layout.module.css';
 import { useLocation, useNavigate, Outlet } from 'react-router-dom';
@@ -16,6 +16,7 @@ const AppLayout: React.FC = () => {
   const getKeyByPath = (path: string): string => {
     if (path.startsWith('/questions')) return '2'; // 匹配 /questions 及其所有子路径
     if (path.startsWith('/exam-generation')) return '3'; // 匹配 /exam-generation 及其所有子路径
+    if (path.startsWith('/exam-management')) return '4'; // 匹配 /exam-management 及其所有子路径
     if (path === '/' || path.startsWith('/notes')) return '1'; // 学习心得路径
     return '1'; // 默认高亮学习心得
   };
@@ -29,12 +30,14 @@ const AppLayout: React.FC = () => {
     if (key === '1') navigate('/');
     else if (key === '2') navigate('/questions');
     else if (key === '3') navigate('/exam-generation');
+    else if (key === '4') navigate('/exam-management');
   };
 
   const items = [
     { key: '1', icon: <FormOutlined />, label: '学习心得' },
     { key: '2', icon: <FileTextOutlined />, label: '题库管理' },
     { key: '3', icon: <EditOutlined />, label: '智能组卷' },
+    { key: '4', icon: <BookOutlined />, label: '试卷管理' },
   ];
 
   return (

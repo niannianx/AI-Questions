@@ -8,6 +8,7 @@ import QuestionBank from '../pages/QuestionBank';
 import AIGeneration from '../pages/AIGeneration';
 import ErrorPage from '../pages/ErrorPage';
 import ExamGeneration from '../pages/ExamGeneration';
+import ExamManagement from '../pages/ExamManagement';
 
 const questionLoader = async () => {
   return ['选择题一', '选择题二', '编程题'];
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'exam-generation',
         element: <ExamGeneration />,
+      },
+      {
+        path: 'exam-management',
+        element: <ExamManagement />,
       },
     ],
   },

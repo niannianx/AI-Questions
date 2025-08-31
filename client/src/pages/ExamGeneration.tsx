@@ -33,7 +33,7 @@ interface ExamQuestion {
 interface ExamData {
     subject: string;
     difficulty: string;
-    duration_minutes: number;
+    duration: number;
     questions: ExamQuestion[];
 }
 
@@ -86,10 +86,14 @@ const ExamGeneration: React.FC = () => {
         try {
             setSaving(true);
             // 这里可以调用保存试卷的API
-            // await questionService.saveExam(generatedExam);
-            message.success('试卷保存成功！');
-            // 可以选择跳转到试卷管理页面
-            // navigate('/exam-management');
+            const response = await questionService.saveExam(generatedExam);
+            if (response.code === 0) {
+                message.success('试卷保存成功！');
+                // 跳转到试卷管理页面
+                navigate('/exam-management');
+            } else {
+                message.error(response.message || '保存失败');
+            }
         } catch (error) {
             message.error('保存失败，请重试');
         } finally {
@@ -221,7 +225,7 @@ const ExamGeneration: React.FC = () => {
                                     <Typography.Text>难度：{generatedExam.difficulty}</Typography.Text>
                                 </Col>
                                 <Col span={6}>
-                                    <Typography.Text>时长：{generatedExam.duration_minutes}分钟</Typography.Text>
+                                    <Typography.Text>时长：{generatedExam.duration}分钟</Typography.Text>
                                 </Col>
                                 <Col span={6}>
                                     <Typography.Text>总题数：{generatedExam.questions.length}</Typography.Text>

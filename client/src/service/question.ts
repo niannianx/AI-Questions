@@ -58,6 +58,59 @@ const questionService = {
     const response = await axios.post('/api/exam/generate', params);
     return response.data;
   },
+
+  saveExam :async (examData: any) => {
+    try {
+      const response = await fetch('/api/exam/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(examData),
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Error saving exam:', error);
+      throw error;
+    }
+  },
+
+  getExamList :async (params: { page: number; pageSize: number }) => {
+    try {
+      const queryParams = new URLSearchParams({
+        page: params.page.toString(),
+        pageSize: params.pageSize.toString(),
+      });
+      
+      const response = await fetch(`/api/exam/list?${queryParams}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting exam list:', error);
+      throw error;
+    }
+  },
+
+  getExamDetail :async (examId: number) => {
+    try {
+      const response = await fetch(`/api/exam/${examId}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting exam detail:', error);
+      throw error;
+    }
+  },
+
+  deleteExam :async (examId: number) => {
+    try {
+      const response = await fetch(`/api/exam/${examId}`, {
+        method: 'DELETE',
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Error deleting exam:', error);
+      throw error;
+    }
+  },
 };
 
 export default questionService;

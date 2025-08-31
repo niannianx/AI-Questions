@@ -139,6 +139,33 @@ exports.Prisma.QuestionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ExamScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subject: 'subject',
+  difficulty: 'difficulty',
+  duration: 'duration',
+  totalScore: 'totalScore',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ExamQuestionScalarFieldEnum = {
+  id: 'id',
+  examId: 'examId',
+  questionId: 'questionId',
+  type: 'type',
+  content: 'content',
+  options: 'options',
+  answer: 'answer',
+  score: 'score',
+  difficulty: 'difficulty',
+  language: 'language',
+  order: 'order',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -152,7 +179,9 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Question: 'Question'
+  Question: 'Question',
+  Exam: 'Exam',
+  ExamQuestion: 'ExamQuestion'
 };
 
 /**

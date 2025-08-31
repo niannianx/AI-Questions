@@ -33,6 +33,7 @@ model Question {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
 // 新增试卷模型
 model Exam {
   id          Int      @id @default(autoincrement())

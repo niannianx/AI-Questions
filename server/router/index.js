@@ -11,7 +11,14 @@ import {
   generateQuestions,
  
 } from "../controller/question.js";
-import { generateExam, getRecommendedQuestions } from "../controller/exam.js";
+import { 
+  generateExam, 
+  saveExam, 
+  getExamList, 
+  getExamDetail, 
+  deleteExam,
+  getRecommendedQuestions 
+} from "../controller/exam.js";
 
 const router = new Router({
   prefix: "/api",
@@ -32,6 +39,11 @@ router.put("/questions/:id", updateQuestion);
 router.post("/questions/delete", deleteQuestions);
 router.post("/questions/generate", generateQuestions);
 router.post('/exam/generate', generateExam);
+
+router.post('/exam/save', saveExam);
+router.get('/exam/list', getExamList);
+router.get('/exam/:id', getExamDetail);
+router.delete('/exam/:id', deleteExam);
 router.get('/exam/recommend', getRecommendedQuestions);
 
 export default router;

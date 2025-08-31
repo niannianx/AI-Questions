@@ -33,3 +33,40 @@ model Question {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
+
+// 新增试卷模型
+model Exam {
+  id         Int      @id @default(autoincrement())
+  title      String // 试卷标题
+  subject    String // 科目
+  difficulty String // 难度
+  duration   Int // 考试时长（分钟）
+  totalScore Int // 总分
+  status     String   @default("active") // 状态：active, inactive, deleted
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // 关联试卷题目
+  examQuestions ExamQuestion[]
+}
+
+// 试卷题目关联表
+model ExamQuestion {
+  id         Int      @id @default(autoincrement())
+  examId     Int // 试卷ID
+  questionId Int? // 题目ID（如果题目来自题库）
+  type       String // 题目类型
+  content    String // 题目内容
+  options    String? // 选项（JSON字符串）
+  answer     String? // 答案
+  score      Int // 分值
+  difficulty String // 难度
+  language   String? // 编程语言
+  order      Int // 题目顺序
+  createdAt  DateTime @default(now())
+
+  // 关联试卷
+  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+
+  @@index([examId])
+}
