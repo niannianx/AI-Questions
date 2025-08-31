@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Form, Select, Input, Radio, Checkbox } from 'antd';
 import { Question } from '../service/question';
+import Editor from '@monaco-editor/react';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -52,6 +53,7 @@ const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
         options:
           Array.isArray(opts) && opts.length === 4 ? opts : ['', '', '', ''],
         answer: parsedAnswer,
+        codeAnswer: initialValues?.codeAnswer || '',
       });
 
       setType(initialValues?.type || 'single');
@@ -66,6 +68,7 @@ const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
         options: values.options ? JSON.stringify(values.options) : null,
         answer:
           type === 'multiple' ? JSON.stringify(values.answer) : values.answer,
+        codeAnswer: type === 'programming' ? values.codeAnswer : null,
       };
       onSave(formattedValues);
     } catch {
@@ -154,6 +157,38 @@ const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
             </Form.Item>
           </>
         )}
+
+                
+        {/* 编程题时显示代码答案输入框 */}
+        {type === 'programming' && (
+          <Form.Item
+            name="codeAnswer"
+            label="代码答案"
+            rules={[{ required: true, message: '请输入代码答案' }]}
+          >
+            {/* <TextArea 
+              rows={8} 
+              placeholder="请输入完整的代码实现..."
+              style={{ fontFamily: 'monospace' }}
+            /> */}
+            <Editor
+              height="100px"
+              language={form.getFieldValue('language') || 'javascript'}
+              theme="vs-light"
+              options={{
+                minimap: { enabled: false },
+                fontSize: 14,
+                lineNumbers: 'on',
+                automaticLayout: true,
+                wordWrap: 'on',
+              }}
+              onChange={(value) => {
+                form.setFieldValue('codeAnswer', value || '');
+              }}
+            />
+          </Form.Item>
+        )}
+
 
         <Form.Item name="difficulty" label="难度" rules={[{ required: true }]}>
           <Select>

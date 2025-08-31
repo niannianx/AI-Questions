@@ -1,6 +1,6 @@
 // src/components/QuestionCard.tsx
 import React from 'react';
-import { Card, Checkbox } from 'antd';
+import { Card, Checkbox, Collapse } from 'antd';
 import { Question } from '../service/question';
 
 interface QuestionCardProps {
@@ -56,6 +56,20 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
           {question.answer && (
             <div className="mt-2 text-green-600">
               参考答案：{question.answer}
+            </div>
+          )}
+
+          {question.type === 'programming' && question.codeAnswer && (
+            <div className="mt-3">
+              <Collapse size="small" ghost>
+                <Collapse.Panel header="查看代码答案" key="code">
+                  <div className="bg-gray-100 p-3 rounded-md">
+                    <pre className="text-sm overflow-x-auto whitespace-pre-wrap">
+                      <code>{question.codeAnswer}</code>
+                    </pre>
+                  </div>
+                </Collapse.Panel>
+              </Collapse>
             </div>
           )}
         </div>

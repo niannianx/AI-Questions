@@ -27,6 +27,7 @@ model Question {
   content    String
   options    String? // JSON string for choices in single/multiple choice questions
   answer     String? // For single/multiple choice questions
+  codeAnswer String? // For programming questions - stores the code solution
   difficulty String // 'easy', 'medium', 'hard'
   language   String? // For programming questions
   createdAt  DateTime @default(now())

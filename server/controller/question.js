@@ -125,6 +125,7 @@ export const generateQuestions = async (ctx) => {
         "content": "题目描述",
         "options": null,
         "answer": "参考答案",
+        "codeAnswer": "完整的代码实现",
         "difficulty": "${difficulty}",
         "language": ${JSON.stringify(languages)}
       }]`;
@@ -182,6 +183,7 @@ export const generateQuestions = async (ctx) => {
           : JSON.stringify(Array.isArray(q.options) ? q.options : JSON.parse(q.options)),
         // answer: JSON.stringify(q.answer),
         answer: type === 'single' ? q.answer : JSON.stringify(q.answer), // 单选题答案保持为单个字符
+        codeAnswer: type === 'programming' ? q.codeAnswer : null,
         difficulty: q.difficulty || difficulty,
         language: languages.length > 0 ? JSON.stringify(languages) : null
       }));
