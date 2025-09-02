@@ -22,9 +22,10 @@ export const generateExam = async (ctx) => {
             apiKey: apiKey,
             baseURL: aiConfig.baseURL,
         });
+        const subjectText = Array.isArray(subject) ? subject.join('、') : subject;
 
         const prompt = `请根据以下要求智能组卷：
-  科目：${subject}
+  科目：${subjectText}
   难度：${difficulty}
   时长：${duration}分钟
   题目数量：单选题${questionCounts.single}道，多选题${questionCounts.multiple}道，编程题${questionCounts.programming}道
@@ -72,6 +73,7 @@ export const generateExam = async (ctx) => {
   6. 确保题目类型和难度符合要求，符合${difficulty}难度要求
   7. 确保题目数量完全符合要求：单选题${questionCounts.single}道，多选题${questionCounts.multiple}道，编程题${questionCounts.programming}道
   8. 确保题目内容与${topics.join('、')}知识点相关`;
+  
 
         const completion = await openai.chat.completions.create({
             model: aiConfig.model,
@@ -124,7 +126,7 @@ export const saveExam = async (ctx) => {
         const exam = await prisma.exam.create({
             data: {
                 title:title || `${subject}考试试卷`,
-                subject,
+                subject: Array.isArray(subject) ? subject.join('、') : subject, 
                 difficulty,
                 duration: duration || 120, // 支持两种字段名
                 totalScore: totalScore || 100, // 默认总分100
