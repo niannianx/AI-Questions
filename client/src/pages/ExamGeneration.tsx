@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Form, Select, InputNumber, Button, message, Divider, Space, Col, Modal, Row, Tag, Typography } from 'antd';
+import { Card, Form, Select, InputNumber, Button, message, Divider, Space, Col, Modal, Row, Tag, Typography, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { EyeOutlined, SaveOutlined } from '@ant-design/icons';
 import questionService from '../service/question';
@@ -7,6 +7,7 @@ import questionService from '../service/question';
 const { Option } = Select;
 
 interface ExamGenerationForm {
+    title?: string;
     subject: string;
     difficulty: 'easy' | 'medium' | 'hard';
     duration: number;
@@ -85,8 +86,12 @@ const ExamGeneration: React.FC = () => {
 
         try {
             setSaving(true);
-            // 这里可以调用保存试卷的API
-            const response = await questionService.saveExam(generatedExam);
+            const formValues = form.getFieldsValue();
+            const examData = {
+                ...generatedExam,
+                title: formValues.title || `${generatedExam.subject}考试试卷` // 使用用户输入的标题或生成默认标题
+            };
+            const response = await questionService.saveExam(examData);
             if (response.code === 0) {
                 message.success('试卷保存成功！');
                 // 跳转到试卷管理页面
@@ -109,7 +114,8 @@ const ExamGeneration: React.FC = () => {
                     layout="vertical"
                     onFinish={handleGenerate}
                     initialValues={{
-                        subject: 'programming',
+                        title: '',
+                        subject: ['programming'],
                         difficulty: 'medium',
                         duration: 120,
                         questionCounts: {
@@ -120,11 +126,29 @@ const ExamGeneration: React.FC = () => {
                         topics: ['javascript', 'python'],
                     }}
                 >
-                    <Form.Item name="subject" label="科目" rules={[{ required: true }]}>
-                        <Select>
+                    <Form.Item 
+                        name="title" 
+                        label="试卷标题（可选）" 
+                        rules={[
+                            { max: 100, message: '标题不能超过100个字符' }
+                        ]}
+                    >
+                        <Input 
+                            placeholder="请输入试卷标题，如：JavaScript基础测试" 
+                            allowClear
+                        />
+                    </Form.Item>
+
+                    <Form.Item name="subject" label="科目" rules={[{ required: true , message: '请选择至少一个科目'}]}>
+                        <Select mode="multiple" placeholder="选择相关科目">
                             <Option value="programming">编程基础</Option>
                             <Option value="algorithm">算法设计</Option>
                             <Option value="database">数据库</Option>
+                            <Option value="frontend">前端开发</Option>
+                            <Option value="backend">后端开发</Option>
+                            <Option value="mobile">移动开发</Option>
+                            <Option value="devops">运维部署</Option>
+                            <Option value="testing">软件测试</Option>
                         </Select>
                     </Form.Item>
 
@@ -159,8 +183,12 @@ const ExamGeneration: React.FC = () => {
                             <Option value="javascript">JavaScript</Option>
                             <Option value="python">Python</Option>
                             <Option value="java">Java</Option>
-                            <Option value="algorithm">算法</Option>
-                            <Option value="data-structure">数据结构</Option>
+                            <Option value="html-css">HTML/CSS</Option>
+                            <Option value="react">React</Option>
+                            <Option value="vue">Vue</Option>
+                            <Option value="nodejs">Node.js</Option>
+                            <Option value="mysql">MySQL</Option>
+                            <Option value="mongodb">MongoDB</Option>
                         </Select>
                     </Form.Item>
 
@@ -216,7 +244,9 @@ const ExamGeneration: React.FC = () => {
                 {generatedExam && (
                     <div className="exam-preview">
                         <div className="text-center mb-6">
-                            <Typography.Title level={2}>{generatedExam.subject || '编程考试试卷'}</Typography.Title>
+                        <Typography.Title level={2}>
+                                {form.getFieldValue('title') || `${generatedExam.subject}考试试卷`}
+                            </Typography.Title>
                             <Row gutter={16} className="mb-4">
                                 <Col span={6}>
                                     <Typography.Text>科目：{generatedExam.subject}</Typography.Text>

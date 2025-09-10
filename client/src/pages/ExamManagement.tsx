@@ -169,12 +169,12 @@ const ExamManagement: React.FC = () => {
       key: 'duration',
       render: (duration: number) => `${duration}分钟`
     },
-    {
-      title: '总分',
-      dataIndex: 'totalScore',
-      key: 'totalScore',
-      render: (score: number) => `${score}分`
-    },
+    // {
+    //   title: '总分',
+    //   dataIndex: 'totalScore',
+    //   key: 'totalScore',
+    //   render: (score: number) => `${score}分`
+    // },
     {
       title: '题目数量',
       dataIndex: '_count',
